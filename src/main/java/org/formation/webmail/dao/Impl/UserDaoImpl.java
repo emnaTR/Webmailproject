@@ -24,7 +24,11 @@ public class UserDaoImpl implements UserDao {
     public User getById(int id) {
         return entityManager.find(User.class, id);
     }
-
+    public User getByMail(String mail) {
+		User user ;
+		user= (User)entityManager.createQuery("select id from User utilisateur where user.mail like :mail").setParameter("mail",mail).getSingleResult();
+		return user;
+	}
     public List<User> getAll() {
         List<User> users;
         String query= "SELECT user FROM users user";

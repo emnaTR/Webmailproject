@@ -17,19 +17,22 @@ public class Mail {
     private String object;
     @Column(name="content")
     private String content;
-    @Column(name="date")
+    //@Column(name="date")
+    @Transient
     private Date date;
     @Column(name="pj1")
     private byte[] pj1;
     @Column(name="pj2")
     private byte[] pj2;
 
-    @Column(name="id_sender")
-    @ManyToOne
+    //@Column(name="id_sender")
+    //@ManyToOne
+    @Transient
     private User userSender;
 
-    @ManyToMany //(mappedBy="users", fetch=FetchType.EAGER) uniquement si relation bidirectionnelle
-    @JoinTable(name="mailtodest")
+    @Transient
+    //@ManyToMany //(mappedBy="users", fetch=FetchType.EAGER) uniquement si relation bidirectionnelle
+    //@JoinTable(name="mailtodest")
     private List<User> usersReceiver;
 
 //getters et setters

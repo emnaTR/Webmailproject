@@ -1,8 +1,8 @@
 package org.formation.webmail.dao;
 
-
-
 import org.formation.webmail.model.User;
+
+
 import java.util.List;
 
 public interface UserDao {
@@ -13,7 +13,7 @@ public interface UserDao {
     //Read User
     public User getById(int id);
     public List<User> getAll();
-
+    public User getByMail(String mail);
     //update User
    // public User update(int id);
 

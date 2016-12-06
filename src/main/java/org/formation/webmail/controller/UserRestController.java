@@ -3,6 +3,7 @@ package org.formation.webmail.controller;
 import org.formation.webmail.model.User;
 import org.formation.webmail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,10 +25,16 @@ public class UserRestController {
     }
     //sauvegarder un user
     @RequestMapping(method= RequestMethod.POST)
-    public void createAvenger(@RequestBody User user)
+    public void createUser(@RequestBody User user)
     {
         //user.setPhoto(Base64.decodeBase64(user.getsPhoto()));
         userService.create(user);
+    }
+    
+    @RequestMapping(value="/{mail}", method= RequestMethod.GET)
+    public User getUser(@PathVariable("mail") String mail )
+    {
+      return userService.getByMail(mail);
     }
 
 }
