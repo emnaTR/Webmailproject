@@ -11,7 +11,7 @@ public interface MailService {
     //Read Mail
     public Mail getById(int id);
     public List<Mail> getAll();
-
+    public List<Mail> getByUserId(Integer UserId);
     //update Mail
     // public User update(int id);
 

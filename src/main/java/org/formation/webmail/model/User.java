@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private int id;
     @Column(name="last_name")
     private String lastName;

@@ -1,11 +1,12 @@
+org\formation\webmail\controller\UserRestController.class
+org\formation\webmail\service\MailService.class
+org\formation\webmail\dao\MailDao.class
 org\formation\webmail\service\Impl\MailServiceImpl.class
+org\formation\webmail\controller\MailRestController.class
 org\formation\webmail\model\User.class
 org\formation\webmail\service\Impl\UserServiceImpl.class
-org\formation\webmail\controller\UserRestController.class
 org\formation\webmail\dao\Impl\UserDaoImpl.class
-org\formation\webmail\service\MailService.class
 org\formation\webmail\dao\Impl\MailDaoImpl.class
 org\formation\webmail\service\UserService.class
-org\formation\webmail\dao\MailDao.class
 org\formation\webmail\dao\UserDao.class
 org\formation\webmail\model\Mail.class

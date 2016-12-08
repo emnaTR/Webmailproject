@@ -25,14 +25,14 @@ public class Mail {
     @Column(name="pj2")
     private byte[] pj2;
 
-    //@Column(name="id_sender")
-    //@ManyToOne
-    @Transient
+    @ManyToOne
     private User userSender;
 
-    @Transient
-    //@ManyToMany //(mappedBy="users", fetch=FetchType.EAGER) uniquement si relation bidirectionnelle
-    //@JoinTable(name="mailtodest")
+    //@Transient
+    @ManyToMany( fetch=FetchType.EAGER)// uniquement si relation bidirectionnelle
+    @JoinTable(name="mailtodest", 
+    joinColumns=@JoinColumn(name="mail_id", referencedColumnName="id"),
+    inverseJoinColumns=@JoinColumn(name="id_receiver", referencedColumnName="id"))
     private List<User> usersReceiver;
 
 //getters et setters

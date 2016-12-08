@@ -1,5 +1,6 @@
 package org.formation.webmail.dao;
 
+import org.formation.webmail.model.Mail;
 import org.formation.webmail.model.User;
 
 
@@ -19,4 +20,5 @@ public interface UserDao {
 
     //delete User
     public void delete(int id);
+
 }

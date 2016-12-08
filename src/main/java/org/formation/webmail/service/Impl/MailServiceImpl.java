@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.formation.webmail.dao.MailDao;
 import org.formation.webmail.model.Mail;
+import org.formation.webmail.model.User;
 import org.formation.webmail.service.MailService;
+import org.formation.webmail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,14 @@ public class MailServiceImpl implements MailService {
 
     @Autowired
     private MailDao maildao;
+    
+    @Autowired
+    private UserService userService;
     //CRUD: Create Read Update Delete
     //Create Mail
     public void create(Mail mail)
     {
-        //il faut récuperer l id_sender
-       // maildao.create(mail);
+       maildao.create(mail);
     }
     //Read Mail
     public Mail getById(int id)
@@ -37,4 +41,8 @@ public class MailServiceImpl implements MailService {
     public void delete(int id){
         maildao.delete(id);
     }
+	public List<Mail> getByUserId(Integer UserId) {
+		return maildao.getByUserId(UserId);
+	}
+    
 }
