@@ -1,5 +1,6 @@
 package org.formation.webmail.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.formation.webmail.dao.MailDao;
@@ -20,10 +21,14 @@ public class MailServiceImpl implements MailService {
     private UserService userService;
     //CRUD: Create Read Update Delete
     //Create Mail
-    public void create(Mail mail)
+    public void create(Mail mail, Integer id)
     {
-       maildao.create(mail);
-    }
+    	 User user=userService.getById(id);
+    	 Date d=new Date();
+    	 mail.setDate(d);
+    	 mail.setUserSender(user);
+         maildao.create(mail);
+    } 
     //Read Mail
     public Mail getById(int id)
     {
@@ -34,15 +39,16 @@ public class MailServiceImpl implements MailService {
        return maildao.getAll();
     }
 
-    //update Mail
-    // public User update(int id);
-
+    
     //delete Mail
     public void delete(int id){
         maildao.delete(id);
     }
 	public List<Mail> getByUserId(Integer UserId) {
 		return maildao.getByUserId(UserId);
+	}
+	public List<Mail> LoadReception(Integer userId) {
+		return maildao.LoadReception(userId);
 	}
     
 }

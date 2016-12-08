@@ -4,6 +4,7 @@ import org.formation.webmail.model.Mail;
 import org.formation.webmail.model.User;
 import org.formation.webmail.service.MailService;
 import org.formation.webmail.service.UserService;
+import org.hibernate.ejb.criteria.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,6 +37,7 @@ public class UserRestController {
     {
         userService.create(user);
     }
+    //////////////////////////////////////////////////////////////////
     //supprimer un user
     @RequestMapping(value="/{id}", method= RequestMethod.DELETE)
     public void deleteUser(@PathVariable("id") Integer id)
@@ -56,27 +60,32 @@ public class UserRestController {
     //////////////////////////////////////////////////////////////////
     //marche pas
     
-    @RequestMapping(value="/mail/{mail}", method= RequestMethod.GET)
-    public User getUser(@PathVariable("mail") String mail )
+    @RequestMapping(value="/login", method= RequestMethod.POST)
+    public User login(@RequestBody User user)
     {
-      return userService.getByMail(mail); //pb de requete
+      return userService.login(user); 
     }
     //////////////////////////////////////////////////////////////////
 
     //envoyer un email
     @RequestMapping(value="/{id}/sendMail", method= RequestMethod.POST)
-    public void sendMail(@PathVariable("id") Integer id, @RequestBody Mail mail)//@RequestBody List<User> ListDest)
+    public void sendMail(@PathVariable("id") Integer id, @RequestBody Mail mail)
     {
-    	 User user=userService.getById(id);
-    	 mail.setUserSender(user);
-    	 mailService.create(mail);
-  
+    	 mailService.create(mail, id);
     }
-    //récupérer la liste des mails recu 
+    //récupérer la liste des mails envoyé 
     @RequestMapping(value="/{id}/MailsSent", method= RequestMethod.GET)
     public List<Mail> MailsSent(@PathVariable("id") Integer id)
     {
+    	//List<Mail> mails=userService.getById(id).getMailsSent();
+    	//return mails;
     	 return mailService.getByUserId(id);
     }
-    //récupérer la liste des mails envoyés
+    //récupérer la liste des mails reçus
+    @RequestMapping(value="/{id}/MailsRec", method= RequestMethod.GET)
+    public List<Mail> MailsReceived(@PathVariable("id") Integer id)
+    {
+    	List<Mail> mails=mailService.LoadReception(id);
+    	return mails;
+    }
 }

@@ -12,7 +12,7 @@ public interface UserService {
     //Read User
     public User getById(int id);
     public List<User> getAll();
-    public User getByMail(String mail);
+    public User login(User user);
     //update User
     // public User update(int id);
 

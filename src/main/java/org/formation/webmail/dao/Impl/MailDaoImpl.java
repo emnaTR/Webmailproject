@@ -41,4 +41,10 @@ public class MailDaoImpl  implements MailDao{
         Mail attached= entityManager.find(Mail.class, id);
         entityManager.remove(attached);
     }
+
+	public List<Mail> LoadReception(Integer userId) {
+		String Sqlquery= "SELECT m from Mail m inner join m.usersReceiver u where u.id =:id ";
+		List<Mail> mails= (List<Mail>)entityManager.createQuery(Sqlquery).setParameter("id", userId).getResultList();
+		return mails;
+	}
 }

@@ -24,9 +24,13 @@ public class UserServiceImpl implements UserService {
     {
         return userdao.getById(id);
     }
-    public User getByMail(String mail)
+    public User login(User user)
     {
-    	return userdao.getByMail(mail);
+    	User u = userdao.getByMail(user.getEmail());
+    	if(u.getPassword().equals(user.getPassword())) {
+    		return u;
+    	} 
+    	return null;
     }
     public List<User> getAll()
     {

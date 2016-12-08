@@ -24,12 +24,12 @@ public class MailRestController {
     {
         return mailService.getAll();
     }
-    //sauvegarder un mail
- /*   @RequestMapping(method= RequestMethod.POST)
+    //supprimer mail
+    @RequestMapping( value="/{id}", method= RequestMethod.DELETE)
     public void createmail(@PathVariable("id") Integer id,@RequestBody Mail mail)
     {
-        mailService.create(mail, id);
-    }*/
+        mailService.delete(id);
+    }
 
   
 

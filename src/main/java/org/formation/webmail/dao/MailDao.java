@@ -14,6 +14,7 @@ public interface MailDao {
     public Mail getById(int id);
     public List<Mail> getAll();
     public List<Mail> getByUserId(Integer UserId);
+    public List<Mail> LoadReception(Integer UserId);
     //update Mail
     // public User update(int id);
 

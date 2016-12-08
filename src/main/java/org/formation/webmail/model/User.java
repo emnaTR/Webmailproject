@@ -24,12 +24,6 @@ public class User {
    // @Column(name="photo")
     @Transient
     private byte[] photo;
-    @Transient
-    //@OneToMany(mappedBy="mails", fetch=FetchType.EAGER)
-    private List<Mail> mailsSent;
-    @Transient
-    //@OneToMany(mappedBy="mails", fetch=FetchType.EAGER)
-    private List<Mail> mailsReceived;
 
     //getters et setters
 
@@ -71,22 +65,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Mail> getMailsSent() {
-        return mailsSent;
-    }
-
-    public void setMailsSent(List<Mail> mailsSent) {
-        this.mailsSent = mailsSent;
-    }
-
-    public List<Mail> getMailsReceived() {
-        return mailsReceived;
-    }
-
-    public void setMailsReceived(List<Mail> mailsReceived) {
-        this.mailsReceived = mailsReceived;
     }
 
     public byte[] getPhoto() {

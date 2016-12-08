@@ -17,9 +17,10 @@ public class Mail {
     private String object;
     @Column(name="content")
     private String content;
-    //@Column(name="date")
-    @Transient
-    private Date date;
+ 
+    @Column(name="date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date =new Date();
     @Column(name="pj1")
     private byte[] pj1;
     @Column(name="pj2")
@@ -28,7 +29,6 @@ public class Mail {
     @ManyToOne
     private User userSender;
 
-    //@Transient
     @ManyToMany( fetch=FetchType.EAGER)// uniquement si relation bidirectionnelle
     @JoinTable(name="mailtodest", 
     joinColumns=@JoinColumn(name="mail_id", referencedColumnName="id"),
