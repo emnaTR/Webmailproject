@@ -28,12 +28,12 @@ public class MailDaoImpl  implements MailDao{
     }
     public List<Mail> getByUserId(Integer UserId) {
         String query= "SELECT m FROM Mail m where m.userSender.id = :UserId";
-        List<Mail> mails= (List<Mail>)entityManager.createQuery(query).setParameter("UserId", UserId).getResultList();
+        List<Mail> mails= entityManager.createQuery(query, Mail.class).setParameter("UserId", UserId).getResultList();
         return mails;
     }
     public List<Mail> getAll() {
-        String Sqlquery= "SELECT * FROM mails";
-        List<Mail> mails= (List<Mail>)entityManager.createNativeQuery(Sqlquery).getResultList();
+        String query= "SELECT mail FROM Mail mail";
+        List<Mail> mails= entityManager.createQuery(query, Mail.class).getResultList();
         return mails;
     }
 
@@ -44,7 +44,7 @@ public class MailDaoImpl  implements MailDao{
 
 	public List<Mail> LoadReception(Integer userId) {
 		String Sqlquery= "SELECT m from Mail m inner join m.usersReceiver u where u.id =:id ";
-		List<Mail> mails= (List<Mail>)entityManager.createQuery(Sqlquery).setParameter("id", userId).getResultList();
+		List<Mail> mails= entityManager.createQuery(Sqlquery, Mail.class).setParameter("id", userId).getResultList();
 		return mails;
 	}
 }

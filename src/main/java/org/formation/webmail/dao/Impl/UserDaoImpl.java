@@ -36,8 +36,8 @@ public class UserDaoImpl implements UserDao {
         //JPQL
         //String query= "SELECT u FROM users u";
         //users= (List<User>)entityManager.createQuery(query).getResultList();
-        String sqlquery= "SELECT * FROM users u";
-        users= (List<User>)entityManager.createNativeQuery(sqlquery).getResultList();
+        String query= "SELECT user FROM User user";
+        users= entityManager.createQuery(query, User.class).getResultList();
         return users;
     }
 

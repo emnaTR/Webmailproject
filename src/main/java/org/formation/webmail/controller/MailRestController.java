@@ -26,7 +26,7 @@ public class MailRestController {
     }
     //supprimer mail
     @RequestMapping( value="/{id}", method= RequestMethod.DELETE)
-    public void createmail(@PathVariable("id") Integer id,@RequestBody Mail mail)
+    public void deleteMail(@PathVariable("id") Integer id,@RequestBody Mail mail)
     {
         mailService.delete(id);
     }
