@@ -6,6 +6,8 @@ import org.formation.webmail.service.MailService;
 import org.formation.webmail.service.UserService;
 import org.hibernate.ejb.criteria.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,9 +63,14 @@ public class UserRestController {
     //marche pas
     
     @RequestMapping(value="/login", method= RequestMethod.POST)
-    public User login(@RequestBody User user)
+    public ResponseEntity<User> login(@RequestBody User user)
     {
-      return userService.login(user); 
+      User account= userService.login(user); 
+   
+      if (account == null)
+          return new ResponseEntity<User> (HttpStatus.NOT_FOUND);
+      else
+          return new ResponseEntity<User> (account, HttpStatus.OK);
     }
     //////////////////////////////////////////////////////////////////
 
